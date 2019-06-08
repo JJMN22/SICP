@@ -1,5 +1,8 @@
 def cons(a, b):
-    return a, b
+    if type(b) is not tuple:  # check if b is same type as lisplists
+        return makelist(a, b)
+    else:
+        return a, b
 
 
 def car(z):
@@ -18,15 +21,19 @@ def caddr(z):
     return cadr(cdr(z))
 
 
+def ispair(z):
+    return type(z) is tuple and len(z) == 2
+
+
 def makelist(*args):
 
-    castedarray = list(args)
+    temp = list(args)
 
     def make(array):
         if len(array) == 0:
             return None
-        return cons(array.pop(0), make(array))
-    return make(castedarray)
+        return array.pop(0), make(array)
+    return make(temp)
 
 
 def printl(lisplist):

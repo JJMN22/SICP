@@ -52,3 +52,16 @@ def div_complex(z1, z2):
         mag(z1) / mag(z2),
         angle(z1) - angle(z2)
     )
+
+
+def tag(type_tag, contents):
+    return cons(type_tag, contents)
+
+
+def typetag(datum):
+    if ispair(datum):
+        return cdr(datum)
+    else:
+        raise Exception(f"Bad tag datum: \n {datum} is not tagged correctly")
+
+
